@@ -3,7 +3,8 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-var rocket, rocketImg
+var rocket, rocketImg, mas, masImg, jup, jupImg, sat, satImg
+var gameState = "start";
 
 function preload()
 {
@@ -14,6 +15,9 @@ function preload()
 	grass = loadImage("grass.png")
 	rocketImg = loadImage("rocket.png") 
   bgS = loadImage("Space.jpg")
+  masImg = loadImage("mas.jpg")
+  jupImg = loadImage("jupiter.webp")
+  satImg = loadImage("saturn.jpg")
   
   Blackhole = loadImage("Blackhole.png")
 }
@@ -44,6 +48,7 @@ function draw()
   background(0);
   console.log(rocket.y)
 
+
   camera.position.x = rocket.x
   camera.position.y = rocket.y
 
@@ -70,11 +75,31 @@ function draw()
   if(rocket.y <= -8500)
   {
    change.rocket.velocityY = 0
-   textSize(40)
-   textColor("white ")
-   text("VANISHED IN THE BLACK HOLE", displayWidth/2, -8800)
   }
- 
+
+  if(keyWentDown("M"))
+  {
+    var mas = createSprite(800, -9000, 200, 700);
+        mas.addImage("mas", masImg);
+        mas.scale = 1.6;
+  }
+
+  if(keyWentDown("J"))
+  {
+    var jup = createSprite(800, -8800, 200, 700);
+        jup.addImage("jup", jupImg);
+        jup.scale = 3.2;
+  }
+
+  if(keyWentDown("S"))
+  {
+    var sat = createSprite(800, -9000, 200, 700);
+        sat.addImage("sat", satImg);
+        sat.scale = 3.4;
+  }
+
+
+
   drawSprites();
 }
 
